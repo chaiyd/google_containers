@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
-docker tag $IMAGE_NAME $DOCKER_REPO:v0.40.2
-docker push $DOCKER_REPO:v0.40.2
+#docker tag $IMAGE_NAME $DOCKER_REPO:v0.40.2
+#docker push $DOCKER_REPO:v0.40.2
+
+docker pull k8s.gcr.io/ingress-nginx/controller:v0.40.2@sha256:46ba23c3fbaafd9e5bd01ea85b2f921d9f2217be082580edc22e6c704a83f02f
+docker tag k8s.gcr.io/ingress-nginx/controller:v0.40.2@sha256:46ba23c3fbaafd9e5bd01ea85b2f921d9f2217be082580edc22e6c704a83f02f $DOCKER_REPO:v0.40.2@sha256:46ba23c3fbaafd9e5bd01ea85b2f921d9f2217be082580edc22e6c704a83f02f
+docker push $DOCKER_REPO:v0.40.2@sha256:46ba23c3fbaafd9e5bd01ea85b2f921d9f2217be082580edc22e6c704a83f02f
