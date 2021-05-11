@@ -1,0 +1,15 @@
+#!/bin/bash
+
+version=1.21.0
+
+version=$1
+
+# url=registry.cn-hangzhou.aliyuncs.com/google_containers
+url=k8s.gcr.io
+
+images=(`kubeadm config images list --kubernetes-version=$version|awk -F '/' '{print $2}'`)
+for imagename in ${images[@]} ; do
+  docker pull $url/$imagename
+  docker tag $url/$imagename $DOCKER_REPO/$imagename
+  docker push $DOCKER_REPO/$imagename
+done
